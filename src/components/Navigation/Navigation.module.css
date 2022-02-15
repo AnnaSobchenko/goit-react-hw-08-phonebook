@@ -1,0 +1,14 @@
+.link{
+    color:#fff;
+    font-size: 26px;
+    font-weight: 500;
+    text-decoration: none;
+    margin: 0;
+    margin-right: 30px;
+
+}
+.activeLink{
+    color: tomato;
+    /* font-size: 16px;
+    text-decoration: none; */
+}
