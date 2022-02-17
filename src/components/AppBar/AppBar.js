@@ -2,10 +2,10 @@ import Navigation from "components/Navigation/Navigation";
 import s from "./AppBar.module.css"
 
 const AppBar = () => {
-    return (
+    return (<div className={s.body}>
         <header className={s.header}>
             <Navigation />
-        </header>
+        </header></div>
       );
 }
  

@@ -7,9 +7,9 @@ import MovieDetailsPage from 'views/MovieDetailsPage';
 import  "./App.module.css"
 
 const App = () => {
-  return (
+  return (<><AppBar />
     <Container>
-      <AppBar />
+      
    
 
     <Switch>
@@ -23,7 +23,7 @@ const App = () => {
         <MoviesView />
       </Route>
     </Switch> </Container>
-  );
+  </>);
 };
 
 export default App;
