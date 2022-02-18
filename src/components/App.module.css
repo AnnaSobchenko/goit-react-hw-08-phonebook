@@ -1,18 +1,49 @@
-ul{
-    list-style:decimal;
-    font-weight: 700;    
+ul {
+  list-style: none;
+  font-weight: 500;
+  display: grid;
+  max-width: calc(90vw - 8px);
+  grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+  grid-gap: 30px;
+  padding: 0;
+  margin: 0;
 }
 
-li, .link, a{
-    text-decoration: none;    
-    color:#212121;
-    font-size:20px;
-    margin: 0;
-    line-height: 1.2;
+li,
+.link,
+a {
+  text-decoration: none;
+  color: #212121;
+  font-size: 20px;
+  margin: 0;
+  line-height: 1.2;
 }
 
-h3{
+h3 {
+  margin: 0;
+  line-height: 1.2;
+  font-size: 15px;
+}
+
+li {
+  width: 80%;
+}
+a {
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  align-items: center;
+  width: 140px;
+text-shadow: 2px 2px 2px rgba(0, 0, 0, .2);
+}
+
+nav{
     margin: 0;
-    line-height: 1.6;
-    font-size: 20px;
+    display: flex;
+    width: 80%;
+    justify-content: space-evenly;
+}
+
+img{
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0,0.2);
 }
