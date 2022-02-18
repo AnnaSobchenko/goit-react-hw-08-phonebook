@@ -1,11 +1,12 @@
-import Cast from 'components/Cast/Cast';
-import Reviews from 'components/Reviews/Reviews';
+// import Cast from 'components/Cast/Cast';
+// import Reviews from 'components/Reviews/Reviews';
 import { useEffect, useState } from 'react';
 import { Link, Route, useParams } from 'react-router-dom';
 import { getCast, getMovieID, getReviews } from 'services/movieService';
 import s from './views.module.css';
 // import img from '../img/default-movie.png';
 import photo from '../img/photo.jpg';
+
 
 const MovieDetailsPage = () => {
   const [movieId, setMovieId] = useState({});
@@ -45,7 +46,7 @@ const MovieDetailsPage = () => {
           //   ) : (
           //    <img src={ img} alt=" "/>
         )}
-        <div>
+        <div className={s.detaileMovie}>
           <h2>{movieId.original_title}</h2>
           {Number(movieId.vote_average) > 0 && (
             <p>User Score: {movieId.vote_average * 10}%</p>
