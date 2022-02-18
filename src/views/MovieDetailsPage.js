@@ -10,26 +10,29 @@ import photo from '../img/photo.jpg';
 const MovieDetailsPage = () => {
   const [movieId, setMovieId] = useState({});
   const [castId, setCastId] = useState([]);
-  const [reviewsId, setReviewsId] = useState([]);
+  const [reviewsId, setReviewsId] = useState('');
   const id = useParams();
   const imgUrl = 'https://image.tmdb.org/t/p/w400/';
 
   useEffect(() => {
-    id && getMovieID(id).then(movie => setMovieId(movie));
+    id && getMovieID(id).then(movie => setMovieId(movie)).catch((err)=>console.log(err));
     // console.log(movieId);
   }, [id]);
 
   useEffect(() => {
-    movieId.id && getCast(movieId.id).then(cast => setCastId(cast));
+    movieId.id && getCast(movieId.id).then(cast => setCastId(cast)).catch((err)=>console.log(err));
   }, [movieId.id]);
 
   useEffect(() => {
-    movieId.id && getReviews(movieId.id).then(review => setReviewsId(review));
+    movieId.id &&
+      getReviews(movieId.id).then(review =>
+        setReviewsId(review.results[0].content)).catch((err)=>setReviewsId.content="We don't have any for this movie"
+      );
   }, [movieId.id]);
 
-  console.log(movieId.id);
-  console.log(castId);
-  console.log(reviewsId);
+  // console.log(movieId.id);
+  // console.log(castId);
+  // console.log(reviewsId);
   return (
     <>
       <Link className={s.goback}>&#8656; Go back</Link>
@@ -68,17 +71,27 @@ const MovieDetailsPage = () => {
       </div>
       <div className={s.infocastreview}>
         <Route path={'/movies/' + movieId.id + '/reviews'}>
-          <p>{reviewsId}</p>
+          {reviewsId ? (
+            <p>{reviewsId}</p>
+          ) : (
+            <p>We don't have any for this movie</p>
+          )}
         </Route>
         <Route path={'/movies/' + movieId.id + '/cast'}>
           <div className={s.cast}>
             {castId.map(el => (
               <li key={el.id}>
-              {el.profile_path?(  <img className={s.profile} src={imgUrl+el.profile_path} alt="&#128526;" /> ) : (
-             <img className={s.profile} src={ photo} alt=" "/>
-        )}
+                {el.profile_path ? (
+                  <img
+                    className={s.profile}
+                    src={imgUrl + el.profile_path}
+                    alt="&#128526;"
+                  />
+                ) : (
+                  <img className={s.profile} src={photo} alt=" " />
+                )}
                 <h3>{el.name}</h3>
-                {el.character&&<p>character: {el.character}</p>}
+                {el.character && <p>character: {el.character}</p>}
               </li>
             ))}
           </div>
