@@ -1,11 +1,9 @@
-// import Cast from 'components/Cast/Cast';
-// import Reviews from 'components/Reviews/Reviews';
 import { useEffect, useState } from 'react';
 import { Link, Route, useParams } from 'react-router-dom';
 import { getCast, getMovieID, getReviews } from 'services/movieService';
 import s from './views.module.css';
-// import img from '../img/default-movie.png';
 import photo from '../img/photo.jpg';
+import { Notify } from 'notiflix';
 
 
 const MovieDetailsPage = () => {
@@ -16,24 +14,28 @@ const MovieDetailsPage = () => {
   const imgUrl = 'https://image.tmdb.org/t/p/w400/';
 
   useEffect(() => {
-    id && getMovieID(id).then(movie => setMovieId(movie)).catch((err)=>console.log(err));
-    // console.log(movieId);
+    id &&
+      getMovieID(id)
+        .then(movie => setMovieId(movie))
+        .catch(err => Notify.failure(
+          '❌ Sorry, there are no movies matching your search query. Please try again.'
+        ));
   }, [id]);
 
   useEffect(() => {
-    movieId.id && getCast(movieId.id).then(cast => setCastId(cast)).catch((err)=>console.log(err));
+    movieId.id &&
+      getCast(movieId.id)
+        .then(cast => setCastId(cast))
+        .catch(err => console.log(err));
   }, [movieId.id]);
 
   useEffect(() => {
     movieId.id &&
-      getReviews(movieId.id).then(review =>
-        setReviewsId(review.results[0].content)).catch((err)=>setReviewsId.content="We don't have any for this movie"
-      );
+      getReviews(movieId.id)
+        .then(review => setReviewsId(review.results[0].content))
+        .catch(err => { setReviewsId.content = "We don't have any for this movie" });
   }, [movieId.id]);
 
-  // console.log(movieId.id);
-  // console.log(castId);
-  // console.log(reviewsId);
   return (
     <>
       <Link className={s.goback}>&#8656; Go back</Link>
@@ -43,8 +45,6 @@ const MovieDetailsPage = () => {
             src={imgUrl + movieId.backdrop_path}
             alt={movieId.original_title}
           />
-          //   ) : (
-          //    <img src={ img} alt=" "/>
         )}
         <div className={s.detaileMovie}>
           <h2>{movieId.original_title}</h2>
@@ -98,15 +98,6 @@ const MovieDetailsPage = () => {
           </div>
         </Route>
       </div>
-      {/* <ul>
-          {movieId.map(el => (
-            <li key={el.id}>
-              <Link to={"/movies/"+el.id}>
-                <h3>{`${el.original_title}`}</h3>
-              </Link>
-            </li>
-          ))}
-        </ul> */}
     </>
   );
 };

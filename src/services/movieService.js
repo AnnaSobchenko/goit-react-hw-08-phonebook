@@ -1,5 +1,5 @@
 import axios from 'axios';
-import notify from 'notifyjs';
+import { Notify } from 'notiflix';
 
 //https://api.themoviedb.org/3/trending/all/day?api_key=<<api_key>>
 
@@ -32,7 +32,7 @@ export const getMovieTrend = () => {
 
 // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
 
-export const getMovieID = id => {  
+export const getMovieID = id => {
   return axios
     .get(
       `/movie/${id.movieId}?api_key=3a77cf2e264fc5181ae75199083953b5&language=en-US`
@@ -45,7 +45,7 @@ export const getMovieID = id => {
 
 //https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
 
-export const getCast = id => {  
+export const getCast = id => {
   return axios
     .get(
       `/movie/${id}/credits?api_key=3a77cf2e264fc5181ae75199083953b5&language=en-US`
@@ -60,8 +60,8 @@ export const getCast = id => {
 
 export const getReviews = id => {
   axios.defaults.params = {
-    language: 'en-US',    
-  };  
+    language: 'en-US',
+  };
   return axios
     .get(`/movie/${id}/reviews?api_key=3a77cf2e264fc5181ae75199083953b5`)
     .then(({ data }) => data)
@@ -72,21 +72,22 @@ export const getReviews = id => {
 
 //https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
 
-
-export const getFilterMovies = (query) => {
+export const getFilterMovies = query => {
   axios.defaults.params = {
-    language: 'en-US',    
+    language: 'en-US',
     page: 1,
-    include_adult:false,
-    query
-  };  
+    include_adult: false,
+    query,
+  };
   return axios
     .get(`/search/movie?api_key=3a77cf2e264fc5181ae75199083953b5`)
-    .then(({ data }) => {if(!data.results.length)
-      {throw new Error(notify.failure(
-        '❌ Sorry, there are no images matching your search query. Please try again.',
-      ))}
-    return data.results})
+    .then(({ data }) => {
+      !data.results.length &&
+        Notify.failure(
+          'Sorry, there are no movies matching your search query. Please try again.'
+        );
+      return data.results;
+    })
     .catch(err => {
       throw err;
     });
