@@ -17,7 +17,7 @@ const HomeView = () => {
         {movieTrend.map(el => (
           <li key={el.id}>
             <Link className='link' to={'/movies/' + el.id}>
-            {el.poster_path && <img src={imgUrl+el.poster_path} alt={el.title} width='140'/>}
+            {el.poster_path && <img src={imgUrl+el.poster_path} alt={el.title} />}
             {el.original_title ?<h3>{el.original_title}</h3>:<h3>{el.original_name}</h3>}
             </Link>
           </li>

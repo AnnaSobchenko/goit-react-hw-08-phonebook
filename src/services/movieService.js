@@ -1,4 +1,5 @@
 import axios from 'axios';
+import notify from 'notifyjs';
 
 //https://api.themoviedb.org/3/trending/all/day?api_key=<<api_key>>
 
@@ -31,8 +32,7 @@ export const getMovieTrend = () => {
 
 // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
 
-export const getMovieID = id => {
-  // console.log(id);
+export const getMovieID = id => {  
   return axios
     .get(
       `/movie/${id.movieId}?api_key=3a77cf2e264fc5181ae75199083953b5&language=en-US`
@@ -45,8 +45,7 @@ export const getMovieID = id => {
 
 //https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
 
-export const getCast = id => {
-  // console.log(id);
+export const getCast = id => {  
   return axios
     .get(
       `/movie/${id}/credits?api_key=3a77cf2e264fc5181ae75199083953b5&language=en-US`
@@ -61,10 +60,8 @@ export const getCast = id => {
 
 export const getReviews = id => {
   axios.defaults.params = {
-    language: 'en-US',
-    // page: 1,
-  };
-  // console.log(id);
+    language: 'en-US',    
+  };  
   return axios
     .get(`/movie/${id}/reviews?api_key=3a77cf2e264fc5181ae75199083953b5`)
     .then(({ data }) => data)
@@ -72,3 +69,27 @@ export const getReviews = id => {
       throw err;
     });
 };
+
+//https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
+
+
+export const getFilterMovies = (query) => {
+  axios.defaults.params = {
+    language: 'en-US',    
+    page: 1,
+    include_adult:false,
+    query
+  };  
+  return axios
+    .get(`/search/movie?api_key=3a77cf2e264fc5181ae75199083953b5`)
+    .then(({ data }) => {if(!data.results.length)
+      {throw new Error(notify.failure(
+        '❌ Sorry, there are no images matching your search query. Please try again.',
+      ))}
+    return data.results})
+    .catch(err => {
+      throw err;
+    });
+};
+
+// getFilterMovies("cat")
