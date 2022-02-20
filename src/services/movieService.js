@@ -92,5 +92,3 @@ export const getFilterMovies = query => {
       throw err;
     });
 };
-
-// getFilterMovies("cat")

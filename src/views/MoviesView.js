@@ -1,14 +1,22 @@
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { getFilterMovies } from 'services/movieService';
+import qs from 'query-string';
 import img from '../img/default-movie.png';
 import s from './views.module.css';
 
 const MoviesView = () => {
+  const history = useHistory();
+  const location = useLocation();
+  const { query } = qs.parse(location.search);
   const [moviesView, setMovieiesView] = useState([]);
-  const [query, setQuery] = useState('');
   const [input, setInput] = useState('');
   const imgUrl = 'https://image.tmdb.org/t/p/w400/';
+  const setSearch = input => {
+    history.push({ pathname: '/movies', search: '?query=' + input });
+  };
 
   const handleChange = e => {
     setInput(e.target.value);
@@ -16,7 +24,8 @@ const MoviesView = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setQuery(input);
+    if (!input) return;   
+    setSearch(input);
   };
 
   useEffect(() => {
@@ -40,7 +49,10 @@ const MoviesView = () => {
       <ul>
         {moviesView.map(el => (
           <li key={el.id}>
-            <Link className="link" to={'/movies/' + el.id}>
+            <Link
+              className="link"
+              to={{ pathname: '/movies/' + el.id, state: { from: location } }}
+            >
               {el.poster_path ? (
                 <img src={imgUrl + el.poster_path} alt={el.title} width="140" />
               ) : (

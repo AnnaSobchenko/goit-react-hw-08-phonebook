@@ -42,12 +42,15 @@ h3 {
 .goback {
   background-color: rgb(241, 245, 255);
   font-size: 12px;
-  width: 60px;
-  margin-top: 10px;
+  width: 100px;
+  margin-top: 15px;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
   margin-left: -50px;
   padding: 5px 15px;
   border-radius: 1px;
+  outline: none;
+  border: none;
+  border-radius: 3px;
 }
 
 li .profile {
