@@ -94,7 +94,7 @@ const MovieDetailsPage = () => {
         >
           &#8658; Cast
         </Link>
-        </div>
+      </div>
       <div className={s.infocastreview}>
         <Route path={'/movies/' + movieId.id + '/reviews'}>
           {reviewsId ? (

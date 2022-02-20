@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { getMovieTrend } from 'services/movieService';
 
 const HomeView = () => {
-  const history = useHistory();
   const location = useLocation();
   const [movieTrend, setMovieTrend] = useState([]);
   const imgUrl = 'https://image.tmdb.org/t/p/w400/';

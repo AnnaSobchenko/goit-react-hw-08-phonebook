@@ -2,9 +2,6 @@ import { lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import AppBar from './AppBar/AppBar';
 import Container from './Container/Container';
-// import HomeView from 'views/HomeView';
-// import MoviesView from 'views/MoviesView';
-// import MovieDetailsPage from 'views/MovieDetailsPage';
 import './App.module.css';
 
 const HomeView = lazy(() => import('views/HomeView'));

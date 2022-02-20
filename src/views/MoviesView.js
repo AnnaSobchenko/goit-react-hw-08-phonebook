@@ -24,7 +24,7 @@ const MoviesView = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!input) return;   
+    if (!input) return;
     setSearch(input);
   };
 
