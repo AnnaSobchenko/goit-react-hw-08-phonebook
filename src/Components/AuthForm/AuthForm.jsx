@@ -30,9 +30,9 @@ const AuthForm = ({ options, cbOnSubmit, initialFormValue }) => {
     dispatch(changeInput({ name, value }));
   };
 
-  useEffect(() => {
-    dispatch(setInitialState(initialFormValue));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(setInitialState(initialFormValue));
+  // }, []);
 
   console.log(authForm);
 
