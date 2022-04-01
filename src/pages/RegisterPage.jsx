@@ -12,8 +12,8 @@ const initialForm = {
 const RegisterPage = () => {
   const dispatch = useDispatch();
 
-  const cbOnSubmit = ({ name, email, password }) =>
-    dispatch(operations.register({ name, email, password }));
+  const cbOnSubmit = (dataForm) =>
+    dispatch(operations.register(dataForm));
 
   return (
       <>

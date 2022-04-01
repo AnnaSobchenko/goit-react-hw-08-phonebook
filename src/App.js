@@ -32,10 +32,10 @@ const App = () => {
       </header>
       <main className="main">
         <Switch>
-          <PublicRoute path="/register" isRedirected>
+          <PublicRoute path="/register" isRestricted>
             <RegisterPage />
           </PublicRoute>
-          <PublicRoute path="/login" isRedirected>
+          <PublicRoute path="/login" isRestricted>
             <LoginPage />
           </PublicRoute>         
           <PrivateRoute path="/" >
