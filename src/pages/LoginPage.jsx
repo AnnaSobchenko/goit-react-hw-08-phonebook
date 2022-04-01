@@ -13,8 +13,8 @@ const LoginPage = () => {
  
   const dispatch = useDispatch();
 
-  const cbOnSubmit = ({ name, email, password }) =>
-    dispatch(operations.logIn({ name, email, password }));
+  const cbOnSubmit = ({ email, password }) =>
+    dispatch(operations.logIn({ email, password }));
 
   return (
     <>
