@@ -2,7 +2,7 @@ import authOperations from './authOperations';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  user: { name: null, email: null },
+  user: { name: "", email: null, password:null },
   token: null,
   isLoggedIn: false,
 };
@@ -12,11 +12,12 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setInitialState(state, { payload }) {
+      console.log(payload)
       return payload;
     },
     changeInput(state, { payload }) {
+      console.log(payload)
       return { ...state, [payload.name]: payload.value };
-      //    state[payload.name]= payload.value;
     },
   },
   extraReducers: {

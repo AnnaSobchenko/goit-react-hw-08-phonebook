@@ -1,21 +1,15 @@
-import { Button } from 'bootstrap';
+import Button from 'react-bootstrap/Button'
 import AuthNav from 'Components/AuthNav/AuthNav';
 import { NavLink } from 'react-router-dom';
 
-const UserMenu = ({ isLoggedIn }) => {
+const UserMenu = ({ isLoggedIn, userName="Anymous" }) => {
   return (
     <>      
         <NavLink to="/menu">Phonebook</NavLink>
-        {isLoggedIn ? <p>&#128125; Welcome!</p> : <AuthNav />}
+        {isLoggedIn ? <p>&#128125; Welcome, {userName}!</p> : <AuthNav />}
       
       {isLoggedIn && (
-        <Button
-          variant="outline-dark"
-          className="mx-auto d-block"
-          as="input"
-          type="button"
-          value="LogOut"
-        />
+        <Button className='btn' variant="light" >LogOut</Button>
       )}
     </>
   );

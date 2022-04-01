@@ -64,7 +64,7 @@ input {
 }
 
 button {
-  width: 160px;
+  // width: 160px;
   height: auto;
   padding: 7px;
   background-color: white;
@@ -81,9 +81,9 @@ button {
   }
 }
 .btn {
-  width: 50px;
+  min-width: 50px;
   height: 30px;
-  padding: 3px;
+  padding: 5px;
 }
 
 .item {
