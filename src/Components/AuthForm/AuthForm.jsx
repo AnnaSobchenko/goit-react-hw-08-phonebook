@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFormValue } from 'redux/auth/authSelectors';
-import { changeInput, setInitialState } from 'redux/auth/authSlice';
+import { changeInput } from 'redux/auth/authSlice';
+// import {  setInitialState } from 'redux/auth/authSlice';
 import { FormStyled } from './AuthForm.styled';
 
-const initialForm = {
-  name: '',
-  email: '',
-  password: '',
-};
+// const initialForm = {
+//   name: '',
+//   email: '',
+//   password: '',
+// };
 
 const AuthForm = ({ options, cbOnSubmit, initialFormValue }) => {
   // const [authForm, setAuthForm] = useState(initialForm);
@@ -34,7 +35,7 @@ const AuthForm = ({ options, cbOnSubmit, initialFormValue }) => {
   //   dispatch(setInitialState(initialFormValue));
   // }, []);
 
-  console.log(authForm);
+  // console.log(authForm);
 
   return (
     <FormStyled onSubmit={handleSubmit}>

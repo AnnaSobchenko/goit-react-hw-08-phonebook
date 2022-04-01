@@ -1,7 +1,7 @@
 import { registerFormOptions } from 'assets/options/registerFormOptions';
 import { useDispatch } from 'react-redux';
 import AuthForm from '../Components/AuthForm/AuthForm';
-import operations from '../redux/auth/authOperations'
+import operations from '../redux/auth/authOperations';
 
 const initialForm = {
   name: '',
@@ -12,18 +12,17 @@ const initialForm = {
 const RegisterPage = () => {
   const dispatch = useDispatch();
 
-  const cbOnSubmit = (dataForm) =>
-    dispatch(operations.register(dataForm));
+  const cbOnSubmit = dataForm => dispatch(operations.register(dataForm));
 
   return (
-      <>
+    <>
       <h2>registration form</h2>
-    <AuthForm
-      options={registerFormOptions}
-      cbOnSubmit={cbOnSubmit}
-      initialFormValue={initialForm}
+      <AuthForm
+        options={registerFormOptions}
+        cbOnSubmit={cbOnSubmit}
+        initialFormValue={initialForm}
       />
-      </>
+    </>
   );
 };
 
