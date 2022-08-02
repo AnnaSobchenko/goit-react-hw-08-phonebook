@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from 'nanoid';
 import { removeContact } from 'redux/contacts/contactsOperations';
 
 const ContactList = () => {
-  const { items, filter } = useSelector(state => state.contacts);
+  const { items, filter } = useSelector(state => state.contacts.contacts);
   const dispatch = useDispatch();
-  // console.log(filter);
   let filterNameArr = items.filter(contact => {
-    // console.log(contact.name);
     return contact.name.toLowerCase().includes(filter.toLocaleLowerCase());
   });
 
@@ -16,7 +15,7 @@ const ContactList = () => {
   }
   return filterNameArr.map(el => {
     return (
-      <li key={el.id} className="item">
+      <li key={nanoid()} className="item">
         <p>
           {el.name}: {el.phone}
         </p>

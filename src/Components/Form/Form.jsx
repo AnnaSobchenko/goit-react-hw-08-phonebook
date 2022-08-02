@@ -11,10 +11,10 @@ const Form = () => {
     phone: '',
   });
 
-  const items = useSelector(state => state.contacts.items);
-  // console.log(items);
+  const items = useSelector(state => state.contacts.contacts.items);
 
   const handleSubmit = e => {
+    console.log('form :>> ', form);
     e.preventDefault();
     if (
       items.map(el => el.name === form.name).filter(el => el === true).length

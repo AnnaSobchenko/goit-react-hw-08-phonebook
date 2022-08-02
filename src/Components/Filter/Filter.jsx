@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { filterInput } from 'redux/contacts/contactsActions';
+import { filterInput } from 'redux/contacts/contactsSlice';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(state => state.contacts.filter);
+  const filter = useSelector(state => state.contacts.contacts.filter);
+
   return (
     <>
       <h2>Contacts</h2>
@@ -19,7 +20,7 @@ const Filter = () => {
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
         placeholder="&#x1f50d; Search..."
-        onChange={e => dispatch(filterInput(e))}
+        onChange={e => dispatch(filterInput(e.currentTarget.value))}
       />
     </>
   );

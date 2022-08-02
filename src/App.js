@@ -5,7 +5,6 @@ import Form from './Components/Form/Form.jsx';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getContacts } from 'redux/contacts/contactsOperations';
 import { getIsLoggedIn, getUserName } from 'redux/auth/authSelectors';
 import RegisterPage from 'pages/RegisterPage';
 import UserMenu from 'Components/UserMenu/UserMenu';
@@ -13,6 +12,7 @@ import { Switch } from 'react-router-dom';
 import PrivateRoute from 'Components/PrivateRoute/PrivateRoute';
 import PublicRoute from 'Components/PublicRoute/PublicRoute';
 import LoginPage from 'pages/LoginPage';
+import { getContacts } from 'redux/contacts/contactsOperations';
 const { Rings } = require('react-loader-spinner');
 
 const App = () => {
@@ -37,8 +37,8 @@ const App = () => {
           </PublicRoute>
           <PublicRoute path="/login" isRestricted>
             <LoginPage />
-          </PublicRoute>         
-          <PrivateRoute path="/" >
+          </PublicRoute>
+          <PrivateRoute path="/">
             <>
               <Form />
               <Filter />
